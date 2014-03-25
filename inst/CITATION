@@ -1,0 +1,14 @@
+
+bibentry("Manual",
+         title = "egcm: Engle-Granger cointegration models",
+         author = person("Matthew Clegg"),
+         year         = version$year,
+         
+         textVersion = 
+         paste("Matthew Clegg (", version$year, "). ", 
+               "egcm: Engle-Granger cointegration models. ",
+               sep=""),
+               
+         mheader = "To cite egcm in publications use:",
+         
+        )

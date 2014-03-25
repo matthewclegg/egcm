@@ -1,0 +1,8 @@
+# TODO list for the egcm package
+
+* The plot could include more information, such as:
+  whether or not the series are cointegrated
+  whether or not the residuals are AR(1)
+  the standard deviation of the residuals
+  the standard deviation of the innovations
+  

@@ -1,0 +1,47 @@
+# exportPattern("^[[:alpha:]]+")
+import("ggplot2", "tseries", "zoo", "MASS")
+
+# Main functions
+export(egcm, 
+  yegcm,
+  pgff.test,
+  pgff_rho_ws,
+  bvr.test,
+  bvr_rho,
+  acor,
+  rar1,
+  rcoint,
+  sim.egcm)
+  
+ # Supporting functions
+ export(is.cointegrated,
+  is.ar1,
+  egcm.set.default.urtest,
+  egcm.default.urtest,
+  egcm.set.default.i1test,
+  egcm.default.i1test,
+  egcm.set.default.pvalue,
+  egcm.default.pvalue,
+  egcm.i1tests,
+  egcm.urtests)
+  
+ # Functions concerned with calibration and assessment of 
+ # the Engle-Granger cointegration model and various unit root tests
+ export(
+  ur_power,
+  ur_power_table,
+  adf_power,
+  adf_power_table,
+  pgff_power,
+  pgff_power_table,
+  bvr_power,
+  bvr_power_table,
+  detrend)
+
+S3method(print, egcm)
+S3method(plot, egcm)
+S3method(as.data.frame, egcm)
+S3method(summary, egcm)
+# S3method(simulate, egcm)
+S3method(residuals, egcm)
+S3method(print, summary.egcm)
