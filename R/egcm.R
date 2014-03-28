@@ -493,19 +493,19 @@ egc_quantile_table <- function(test.method=egcm.urtests(),
 egcm <- function (X, Y, na.action, log=FALSE, normalize=FALSE, debias=TRUE, robust=FALSE,
 	i1test=egcm.default.i1test(), urtest=egcm.default.urtest(), p.value=egcm.default.pvalue()
     ) {
-	# Performs the two-step Engle Granger cointegration analysis on the price
-	# series X and Y, and creates an object representing the results of the
-	# analysis.
-	#  
-	# If X is the price series of the first security and Y is 
-	# the price series of the second, then computes the fit:
-	#
-	#     Y = alpha + beta * X + R
-	#     R_t = rho * R_{t-1} + eps_t
-	#
-	# If log is TRUE, then the price series are logged before the analysis is 
-	# performed.  If Y is missing, then X is presumed to be a two-column
-	# matrix, and X[,1] and X[,2] are used in place of X and Y.
+    # Performs the two-step Engle Granger cointegration analysis on the price
+    # series X and Y, and creates an object representing the results of the
+    # analysis.
+    #  
+    # If X is the price series of the first security and Y is 
+    # the price series of the second, then computes the fit:
+    #
+    #     Y = alpha + beta * X + R
+    #     R_t = rho * R_{t-1} + eps_t
+    #
+    # If log is TRUE, then the price series are logged before the analysis is 
+    # performed.  If Y is missing, then X is presumed to be a two-column
+    # matrix, and X[,1] and X[,2] are used in place of X and Y.
 	
 	if (missing(Y)) {
 		if (is.null(ncol(X)) || (ncol(X) != 2)) {
@@ -565,7 +565,7 @@ egcm <- function (X, Y, na.action, log=FALSE, normalize=FALSE, debias=TRUE, robu
 	S1 <- coredata(S1)
 	S2 <- coredata(S2)
 
-    L <- if(robust) summary(rlm(S2~S1)) else summary(lm(S2~S1))
+    L <- if(robust) summary(rlm(S2~S1)) else suppressWarnings(summary(lm(S2~S1)))
     N <- length(L$residuals)
     R <- L$residuals
     FR <- R[2:N]
@@ -748,6 +748,14 @@ plot.egcm.internal <- function (E, series_names=NULL, ...) {
 		theme(legend.position="top") +
 		scale_colour_discrete(name="") +
 		ggtitle ("Price Series")
+        cat("here\n")
+        if(!is.cointegrated(E)) {
+            x <- min(df1$Date)
+            ymin <- min(df1$Value)
+            ymax <- max(df1$Value)
+            y <- ymin + 0.96 * (ymax - ymin)
+            p1 <- p1 + annotate("text", x=x, y=y, label="Not cointegrated", colour="red", hjust=0)
+        }
 	print(p1, vp=viewport(layout.pos.row=1:4, layout.pos.col=1))
 
 	sdR <- sd(E$residuals)
@@ -756,6 +764,14 @@ plot.egcm.internal <- function (E, series_names=NULL, ...) {
 	p2 <- ggplot(R.df, aes(x=Date, y=Value)) + geom_line() +
 		ggtitle ("Residual Series") + ylab("Differential") + xlab("") +
 		geom_hline(data=hlines, aes(yintercept=Value, colour=Facet), linetype="dashed")
+
+        sdstr <- sprintf("sd(R) = %.2f", E$residuals.sd)
+        x <- min(R.df$Date)
+        ymin <- min(R.df$Value)
+        ymax <- max(R.df$Value)
+        y <- ymin + 0.96 * (ymax - ymin)
+        p2 <- p2 + annotate("text", x=x, y=y, label=sdstr, hjust=0)
+
 	print(p2, vp=viewport(layout.pos.row=5:7, layout.pos.col=1))
 	
 	eps.df$sd <- rollapply(eps.df$Value, 20, sd, align="right", fill=NA)
