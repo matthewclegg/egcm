@@ -753,7 +753,7 @@ plot.egcm.internal <- function (E, series_names=NULL, ...) {
             ymin <- min(df1$Value)
             ymax <- max(df1$Value)
             y <- ymin + 0.96 * (ymax - ymin)
-            p1 <- p1 + annotate("text", x=x, y=y, label="Not cointegrated", colour="red", hjust=0, size=2)
+            p1 <- p1 + annotate("text", x=x, y=y, label="Not cointegrated", colour="red", hjust=0, size=3)
         }
 	print(p1, vp=viewport(layout.pos.row=1:4, layout.pos.col=1))
 
@@ -769,7 +769,7 @@ plot.egcm.internal <- function (E, series_names=NULL, ...) {
         ymin <- min(R.df$Value)
         ymax <- max(R.df$Value)
         y <- ymin + 0.96 * (ymax - ymin)
-        p2 <- p2 + annotate("text", x=x, y=y, label=sdstr, hjust=0, size=2)
+        p2 <- p2 + annotate("text", x=x, y=y, label=sdstr, hjust=0, size=3)
 
 	print(p2, vp=viewport(layout.pos.row=5:7, layout.pos.col=1))
 	
