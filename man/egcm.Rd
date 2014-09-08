@@ -11,7 +11,7 @@ series, and creates an object representing the results of the analysis.
 }
 \usage{
 egcm(X, Y, na.action, log = FALSE, normalize = FALSE, 
-  debias = TRUE, robust=FALSE,
+  debias = TRUE, robust=FALSE, include.const=TRUE,
   i1test = egcm.default.i1test(), 
   urtest = egcm.default.urtest(), 
   p.value = egcm.default.pvalue())
@@ -54,6 +54,11 @@ is.ar1(E)
   Engle-Granger procedure should be performed using a robust linear
   model rather than a standard linear model.  See \code{\link{rlm}}.
   Default: FALSE.
+}
+  \item{include.const}{
+  a boolean which if \code{TRUE}, indicates that the constant term \eqn{alpha}
+  should be included in the model.  Otherwise, sets \eqn{alpha=0}.
+  Default:  TRUE.
 }
   \item{i1test}{
   a mnemonic indicating the name of the test that should be used for
@@ -258,9 +263,8 @@ The fields of the \code{"egcm"} object are as follows:
    \emph{Algorithmic trading: winning strategies and their rationale}.
    (Vol. 625). John Wiley & Sons.
 
-  Clegg, M. (2014).
-  On the Persistence of Cointegration in Pairs Trading,
-  \emph{in preparation}.
+  Clegg, M. (2014). On the Persistence of Cointegration in Pairs Trading (January 28, 2014). 
+  Available at SSRN:  http://ssrn.com/abstract=2491201
 
   Ehrman, D.S. (2006).
   \emph{The handbook of pairs trading: strategies using equities, options, 

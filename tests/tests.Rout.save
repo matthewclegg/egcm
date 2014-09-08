@@ -1,7 +1,7 @@
 
-R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
-Copyright (C) 2013 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin10.8.0 (64-bit)
+R version 3.1.1 (2014-07-10) -- "Sock it to Me"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.1.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -144,6 +144,11 @@ Type 'q()' to quit R.
 + 
 + R[100] = -0.0000 (t = -0.089)")
 +          
++ test("egcm (1:100, (1:100)*2+3, include.const=FALSE)",
++ "Y[i] =   2.0448 X[i] +   0.0000 + R[i], R[i] =   1.0000 R[i-1] + eps[i], eps ~ N(0,  0.0000^2)
++         (0.0026)        (0.0000)                (0.0026)
++ 
++ R[100] = -1.4776 (t = -1.137)")
 + 
 + test("egcm(1:100, 1:100 + sin(1:100))",
 + "Y[i] =   0.9988 X[i] +   0.0583 + R[i], R[i] =   0.5901 R[i-1] + eps[i], eps ~ N(0,  0.5957^2)
@@ -436,6 +441,19 @@ Y[i] =   2.0000 X[i] +   3.0000 + R[i], R[i] =  -0.1241 R[i-1] + eps[i], eps ~ N
 
 R[100] = -0.0000 (t = -0.089)
 
+egcm (1:100, (1:100)*2+3, include.const=FALSE)
+Expecting:
+Y[i] =   2.0448 X[i] +   0.0000 + R[i], R[i] =   1.0000 R[i-1] + eps[i], eps ~ N(0,  0.0000^2)
+        (0.0026)        (0.0000)                (0.0026)
+
+R[100] = -1.4776 (t = -1.137)
+
+Result:
+Y[i] =   2.0448 X[i] +   0.0000 + R[i], R[i] =   1.0000 R[i-1] + eps[i], eps ~ N(0,  0.0000^2)
+        (0.0026)        (0.0000)                (0.0026)
+
+R[100] = -1.4776 (t = -1.137)
+
 egcm(1:100, 1:100 + sin(1:100))
 Expecting:
 Y[i] =   0.9988 X[i] +   0.0583 + R[i], R[i] =   0.5901 R[i-1] + eps[i], eps ~ N(0,  0.5957^2)
@@ -644,7 +662,22 @@ Expecting:
 
 Result:
 [1] 0
+Warning messages:
+1: In summary.lm(lm(S2 ~ S1)) :
+  essentially perfect fit: summary may be unreliable
+2: In summary.lm(lm(S2 ~ S1)) :
+  essentially perfect fit: summary may be unreliable
+3: In summary.lm(lm(S2 ~ S1)) :
+  essentially perfect fit: summary may be unreliable
+4: In summary.lm(lm(S2 ~ S1)) :
+  essentially perfect fit: summary may be unreliable
+5: In summary.lm(lm(S2 ~ S1)) :
+  essentially perfect fit: summary may be unreliable
+6: In summary.lm(lm(S2 ~ S1)) :
+  essentially perfect fit: summary may be unreliable
+7: In summary.lm(lm(S2 ~ S1)) :
+  essentially perfect fit: summary may be unreliable
 > 
 > proc.time()
    user  system elapsed 
-  0.735   0.045   0.771 
+  0.851   0.045   0.887 

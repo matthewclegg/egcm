@@ -1,5 +1,11 @@
 # TODO list for the egcm package
 
-* The plot could include more information, such as:
-  whether or not the residuals are AR(1)
-  the standard deviation of the residuals
+* I'm not sure if I prefer the three-line or one line
+  output format when printing egcm models.
+  
+* The example that is explained in the documentation of
+  egcm does not match the first example in the examples
+  section.
+  
+* Implement Kurt Hornik's suggestion about Authors@R
+
