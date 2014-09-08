@@ -59,7 +59,7 @@ References
 
   Clegg, M. (2014).
   On the Persistence of Cointegration in Pairs Trading,
-  Proceedings of R/Finance, May 2014.
+  Available at SSRN:  http://ssrn.com/abstract=2491201.
   
   Ehrman, D.S. (2006).
   The handbook of pairs trading: strategies using equities, options, 
