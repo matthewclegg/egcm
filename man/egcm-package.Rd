@@ -109,13 +109,12 @@ cointegration tests implemented by Bernard Pfaff
 % it does not cause 'R CMD check' to barf, I would do so, however
 % I do not wish to introduce a dependency on fArma just to satisfy
 % 'R CMD check'.
-\code{\link[fArma]{aggvarFit
-}} Unit root tests based on variance ratios
+\code{\link[fArma]{aggvarFit}} Unit root tests based on variance ratios
 % \code{fArma} Unit root tests based on variance ratios
 }
 \examples{
 \donttest{
-library(ttr)
+library(TTR)
 prices.spy <- getYahooData("SPY", 20130101, 20140101)$Close
 prices.voo <- getYahooData("VOO", 20130101, 20140101)$Close
 egcm(prices.spy, prices.voo)

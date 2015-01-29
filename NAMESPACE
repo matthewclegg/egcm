@@ -11,7 +11,8 @@ export(egcm,
   acor,
   rar1,
   rcoint,
-  sim.egcm)
+  sim.egcm,
+  allpairs.egcm)
   
  # Supporting functions
  export(is.cointegrated,

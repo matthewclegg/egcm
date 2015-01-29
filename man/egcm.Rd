@@ -310,7 +310,7 @@ The fields of the \code{"egcm"} object are as follows:
 }
 \examples{
 \donttest{
-library(ttr)
+library(TTR)
 
 # SPY and IVV are both ETF's that track the S&P 500.
 # One would expect them to be cointegrated, and in 2013 they were.

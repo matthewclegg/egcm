@@ -84,14 +84,14 @@ egcm_tests <- function (include.inexact = FALSE) {
     }
     
     assert("length(egcm.urtests())", 11)
-    assert("egcm.default.urtest()", "pgff")
+    assert("egcm.default.urtest()", "pp")
     assert("egcm.set.default.urtest(\"adf\"); egcm.default.urtest()", 
         "adf")
     assert("egcm.set.default.urtest(\"pgff\"); egcm.default.urtest()", 
         "pgff")
 
     assert("length(egcm.i1tests())", 4)
-    assert("egcm.default.i1test()", "pgff")
+    assert("egcm.default.i1test()", "pp")
     assert("egcm.set.default.i1test(\"adf\"); egcm.default.i1test()", 
         "adf")
     assert("egcm.set.default.i1test(\"pgff\"); egcm.default.i1test()", 

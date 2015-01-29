@@ -1,0 +1,4 @@
+1/28/2015 Changed require(ttr) to require(TTR) in various \donttest{} sections
+1/28/2015 Added function allpairs.egcm
+1/28/2015 Updated DESCRIPTION to include authors@R
+1/28/2015 Default unit root test set to "pp"

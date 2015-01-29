@@ -119,7 +119,7 @@ egcm.default.urtest <- function() {
     egcm.urtests()[1]
 }
 
-egcm.set.default.urtest("pp")
+# egcm.set.default.urtest("pp")
 
 # The following global variable enumerates the tests that are available for
 # checking if the input series are integrated.  The tests from the urca library
@@ -154,7 +154,7 @@ egcm.default.i1test <- function () {
     egcm.i1tests()[1]
 }
 
-egcm.set.default.i1test("pp")
+# egcm.set.default.i1test("pp")
 
 # The following getter/setter functions are used to control the
 # confidence level (p-value) that is used for the various statistical

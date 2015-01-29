@@ -8,7 +8,10 @@ Fetches the Yahoo! price series for two securities and constructs an
 Engle-Granger cointegration model from them
 }
 \usage{
-yegcm(ticker1, ticker2, start = YMD(-365), end = YMD(), ...)
+yegcm(ticker1, ticker2, 
+  start = as.numeric(format(Sys.Date() - 365, "\%Y\%m\%d")), 
+  end = as.numeric(format(Sys.Date(), "\%Y\%m\%d")), 
+  ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

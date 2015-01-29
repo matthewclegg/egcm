@@ -19,7 +19,7 @@
 .onLoad <- function (libname, pkgname) {
 #    packageStartupMessage("Simplified Engle-Granger Cointegration Models, version 1.0")
 #    packageStartupMessage("Copyright (C) 2014 by Matthew Clegg.  Made available under GPL v2 or GPL v3")
-    egcm.set.default.urtest("pgff")
-    egcm.set.default.i1test("pgff")
+    egcm.set.default.urtest("pp")
+    egcm.set.default.i1test("pp")
     egcm.set.default.pvalue(0.05)
 }
