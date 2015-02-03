@@ -1,5 +1,5 @@
 # exportPattern("^[[:alpha:]]+")
-import("ggplot2", "tseries", "zoo", "MASS")
+import("ggplot2", "tseries", "zoo", "MASS", "TTR", "fArma", "parallel", "urca", "grid")
 
 # Main functions
 export(egcm, 

@@ -23,7 +23,7 @@ yegcm <- function(ticker1, ticker2,
     # Fetches the price series of two securities from Yahoo
     # and constructs a cointegration model from them.
 
-    require(TTR)
+#    require(TTR)
     p1 <- getYahooData(ticker1, start, end)
     p2 <- getYahooData(ticker2, start, end)
     prices <- cbind(p1$Close, p2$Close)
@@ -87,8 +87,7 @@ allpairs.egcm <- function (tickers, # A list of ticker symbols of securites
     #   eps.sd:    Standard deviation of the innovations
     #   is.cointegrated:  TRUE if the pair is cointegrated at the 5% confidence level
 
-    require(TTR)
-    require(egcm)
+#    require(TTR)
 
     if (missing(tickers) || (length(tickers) < 2)) {
         stop("tickers must contain at least two ticker symbols")

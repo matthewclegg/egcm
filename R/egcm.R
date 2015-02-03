@@ -61,7 +61,7 @@
 # References
 #
 # Engle, R. F., & Granger, C. W. (1987). Co-integration and error correction: 
-#   representation, estimation, and testing. Econometrica, (55) 2, 251–276.
+#   representation, estimation, and testing. Econometrica, (55) 2, 251-276.
 # Pfaff, Bernhard (2008).  Analysis of Integrated and Cointegrated Time 
 #   Series with R.  Springer.
 
@@ -102,8 +102,8 @@ egcm.set.default.urtest <- function (urtest) {
 		stop ("No such unit root test: ", urtest)
 	}
     
-    if (urtest %in% c("jo-e", "jo-t", "ers-p", "ers-d", "sp-r")) require(urca)
-    if (urtest == "hurst") require(fArma)
+#    if (urtest %in% c("jo-e", "jo-t", "ers-p", "ers-d", "sp-r")) require(urca)
+#    if (urtest == "hurst") require(fArma)
 
 	urtests.list <<- c(urtest, setdiff(egcm.urtests.internal, urtest))
     assign("urtest.default", urtests.list, envir=egcm.env)
@@ -215,8 +215,8 @@ test.egcm <- function(EGCM, test.method=egcm.default.urtest()) {
 	test.method <- match.arg(test.method, egcm.urtests())
     DNAME <- deparse(substitute(EGCM))
 
-    if (test.method %in% c("jo-e", "jo-t", "ers-p", "ers-d", "sp-r")) require(urca)
-    if (test.method == "hurst") require(fArma)
+#    if (test.method %in% c("jo-e", "jo-t", "ers-p", "ers-d", "sp-r")) require(urca)
+#    if (test.method == "hurst") require(fArma)
 	
 	if (is(EGCM, "egcm")) {
 		R <- EGCM$residuals
@@ -284,8 +284,8 @@ egc.residuals.test <- function(R, test.method=setdiff(egcm.urtests(), c("jo-e", 
     DNAME <- deparse(substitute(R))
 	METHOD <- sprintf("Unit root test (%s) of residuals in Engle Granger procedure", test.method)
 
-    if (test.method %in% c("jo-e", "jo-t", "ers-p", "ers-d", "sp-r")) require(urca)
-    if (test.method == "hurst") require(fArma)
+#    if (test.method %in% c("jo-e", "jo-t", "ers-p", "ers-d", "sp-r")) require(urca)
+#    if (test.method == "hurst") require(fArma)
 
 	if (test.method == "adfraw") {
 		adf <- suppressWarnings(adf.test(R, "stationary"))
@@ -379,7 +379,7 @@ egc_test_power_table <- function (test.method=egcm.urtests(),
 	# Constructs a table of power estimates for realistic values of rho
 	test.method <- match.arg(test.method)
 	do.row <- function(nv) sapply(rho, function(r) egc_test_power(test.method, r, nv, nrep, p.value))
-    require(parallel)
+#    require(parallel)
 	pt <- do.call("rbind", mclapply(n, function(nv) do.row(nv)))
 	pt <- as.data.frame(pt)
 	rownames(pt) <- n
@@ -401,7 +401,7 @@ egcm_power_comparison_table <- function (tests=egcm.urtests(), nrep=10000, p.val
 		df
 	}
     
-	require(parallel)
+#	require(parallel)
 	power_tab <- do.call("rbind", mclapply(tests, do_test_method))
 	
 	attr(power_tab, "n") <- n
@@ -478,7 +478,7 @@ egc_quantile_table <- function(test.method=egcm.urtests(),
 	# Calculates a table of quantile values by sample size of the egc.test function
 	# under the assumption rho=1.
 	test.method <- match.arg(test.method)
-    require(parallel)
+#    require(parallel)
 	df <- do.call("cbind", mclapply(n, function(nv) c(nv, egc_quantiles(test.method, nv, nrep, q))))
 	df <- as.data.frame(df)
 	colnames(df) <- n
@@ -1240,7 +1240,7 @@ coint_bias_table <- function (sample_size=c(60, 125, 250, 500, 750, 1000),
 		sm
 	}
 	if (debug) debug(sample_summary)
-	require(parallel)
+#	require(parallel)
 	ssfunc <- function(ss) {
 		data <- do.call("rbind", mclapply(1:nsamples, function(i) do_rep(ss)))
 		sample_summary(data, ss)			

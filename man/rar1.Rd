@@ -36,6 +36,6 @@ a simulation of a trend-stationary AR(1) process
 rar1(100, 0, 0)          # Equivalent to rnorm(100)
 rar1(100, 0, 1)          # Equivalent to cumsum(rnorm(100))
 acor(rar1(100, 1, .5))   # Should be about 0.5
-adf.test(rar1(100, 0, .5))  # Should have a low p-value
+tseries::adf.test(rar1(100, 0, .5))  # Should have a low p-value
 }
 \keyword{ts}
