@@ -110,7 +110,7 @@ fit to the following model:
 
 \deqn{Y[i] = \alpha + \beta * X[i] + R[i]}
 \deqn{R[i] = \rho * R[i-1] + \epsilon[i]}
-\deqn{\epsilon[i] ~ N(0, \sigma^2)}
+\deqn{\epsilon[i] \sim N(0, \sigma^2)}
 
 In the first step, \eqn{alpha} and \eqn{beta} are found using
 a linear fit of \code{X[i]} with respect to \code{Y[i]}.  The 
@@ -199,9 +199,10 @@ Returns an S3 object of class \code{"egcm"}.  This can then be
 The following is a copy of the printed output that was obtained from 
 running the first example below:
 \preformatted{
-VOO[i] =   0.9201 SPY[i] -   0.6845 + R[i], R[i] =  -0.0004 R[i-1] + eps[i], eps ~ N(0,  0.0779^2)
-          (0.0005)          (0.0845)                (0.0633)
-
+VOO[i] =   0.9201 SPY[i] -   0.6845 + R[i], 
+          (0.0005)          (0.0845)     
+R[i] =  -0.0004 R[i-1] + eps[i], eps ~ N(0,  0.0779^2)
+        (0.0633)
 R[2013-12-31] = -0.0987 (t = -1.265)}
 
 The first line of the output shows the fit that was found.  
