@@ -1,16 +1,16 @@
 Package: egcm
 Type: Package
 Title: Engle-Granger Cointegration Models
-Version: 1.0.7
-Date: 2014-01-24
+Version: 1.0.8
+Date: 2015-11-12
 Authors@R: c(person("Matthew", "Clegg", role=c("aut","cre","cph"),
                     email="matthewcleggphd@gmail.com"))
-Description: This package provides an easy-to-use implementation of the Engle-Granger
+Description: An easy-to-use implementation of the Engle-Granger
   two-step procedure for identifying pairs of cointegrated series.  It is geared towards 
   the analysis of pairs of securities.  Summary and plot functions are provided, 
   and the package is able to fetch closing prices of securities from Yahoo.
   A variety of unit root tests are supported, and an improved unit root test is included.  
 Depends: zoo, xts, TTR
-Imports: grid, ggplot2, tseries, MASS, urca, parallel, fArma
+Imports: grid, ggplot2, tseries, MASS, urca, parallel, fArma, stats, methods
 License: GPL-2 | GPL-3
 
