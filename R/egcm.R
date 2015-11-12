@@ -780,14 +780,15 @@ plot.egcm.internal <- function (E, series_names=NULL, ...) {
 		Facet=c("two", "one", "one", "two"))
 	p2 <- ggplot(R.df, aes(x=Date, y=Value)) + geom_line() +
 		ggtitle ("Residual Series") + ylab("Differential") + xlab("") +
-		geom_hline(data=hlines, aes(yintercept=Value, colour=Facet), linetype="dashed")
+		geom_hline(data=hlines, aes(yintercept=Value, colour=Facet), linetype="dashed") +
+        guides(colour=FALSE)
 
-        sdstr <- sprintf("sd(R) = %.2f", E$residuals.sd)
-        x <- min(R.df$Date)
-        ymin <- min(R.df$Value)
-        ymax <- max(R.df$Value)
-        y <- ymin + 0.96 * (ymax - ymin)
-        p2 <- p2 + annotate("text", x=x, y=y, label=sdstr, hjust=0, size=3)
+    sdstr <- sprintf("sd(R) = %.2f", E$residuals.sd)
+    x <- min(R.df$Date)
+    ymin <- min(R.df$Value)
+    ymax <- max(R.df$Value)
+    y <- ymin + 0.96 * (ymax - ymin)
+    p2 <- p2 + annotate("text", x=x, y=y, label=sdstr, hjust=0, size=3)
 
 	print(p2, vp=viewport(layout.pos.row=5:7, layout.pos.col=1))
 	
@@ -795,7 +796,7 @@ plot.egcm.internal <- function (E, series_names=NULL, ...) {
 	eps.df$msd <- -eps.df$sd
 	p3 <- ggplot(eps.df, aes(x=Date, y=Value)) + geom_line() +
 		ggtitle ("Innovations") + ylab("Epsilon") + xlab("") +
-		geom_ribbon(aes(ymin=msd, ymax=sd), alpha=0.3)
+		geom_ribbon(aes(ymin=msd, ymax=sd), alpha=0.3, na.rm=TRUE)
 	print(p3, vp=viewport(layout.pos.row=8:10, layout.pos.col=1))
 }
 

@@ -2,3 +2,4 @@
 1/28/2015 Added function allpairs.egcm
 1/28/2015 Updated DESCRIPTION to include authors@R
 1/28/2015 Default unit root test set to "pp"
+11/12/2015 Updated to be compatible with newest release of ggplot

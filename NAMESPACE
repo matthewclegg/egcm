@@ -1,5 +1,6 @@
 # exportPattern("^[[:alpha:]]+")
-import("ggplot2", "tseries", "zoo", "MASS", "TTR", "fArma", "parallel", "urca", "grid", "xts")
+import("ggplot2", "tseries", "zoo", "MASS", "TTR", "fArma", "parallel", "urca", "xts")
+importFrom("grid", grid.newpage, pushViewport, viewport, grid.layout)
 
 # Main functions
 export(egcm, 
