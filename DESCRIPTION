@@ -1,8 +1,8 @@
 Package: egcm
 Type: Package
 Title: Engle-Granger Cointegration Models
-Version: 1.0.8
-Date: 2015-11-12
+Version: 1.0.10
+Date: 2016-03-27
 Authors@R: c(person("Matthew", "Clegg", role=c("aut","cre","cph"),
                     email="matthewcleggphd@gmail.com"))
 Description: An easy-to-use implementation of the Engle-Granger

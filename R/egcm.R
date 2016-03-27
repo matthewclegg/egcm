@@ -293,20 +293,24 @@ egc.residuals.test <- function(R, test.method=setdiff(egcm.urtests(), c("jo-e", 
 		PVAL <- adf$p.value
 		URTEST <- adf$method
 	} else if (test.method == "adf") {
-		adf <- suppressWarnings(adf.test(R, "stationary"))
-		STAT <- adf$statistic
+#		adf <- suppressWarnings(adf.test(R, "stationary"))
+#		STAT <- adf$statistic
+	  adf <- suppressWarnings(ur.df(R, type="none", lags=trunc((length(R)-1)^(1/3))))
+	  STAT <- adf@teststat
 		PVAL <- quantile_table_interpolate(egc_adf_qtab, length(R), STAT)
-		URTEST <- adf$method
+		URTEST <- "Augmented Dickey-Fuller Unit Root Test"
 	} else if (test.method == "pgff") {
-		STAT <- pgff_rho_ws (R, detrend=TRUE)
+		STAT <- pgff_rho_ws (R, detrend=FALSE)
 		names(STAT) <- "rho_ws"
 		PVAL <- quantile_table_interpolate(egc_pgff_qtab, length(R), STAT)
 	    URTEST <- "Pantula, Gonzales-Farias and Fuller Unit Root Test"	
 	} else if (test.method == "pp") {
-		pp <- suppressWarnings(pp.test(R))
-		STAT <- pp$statistic
+#		pp <- suppressWarnings(pp.test(R))
+#		STAT <- pp$statistic
+	  pp <- suppressWarnings(ur.pp(R, type="Z-alpha", model="constant"))
+	  STAT <- pp@teststat
 		PVAL <- quantile_table_interpolate(egc_pp_qtab, length(R), STAT)
-		URTEST <- pp$method	
+		URTEST <- "Phillips-Perron Unit Root Test"
 	} else if (test.method == "ers-p") {
 		ers <- ur.ers(R, type="P-test", model="constant")
 		STAT <- ers@teststat
@@ -479,7 +483,7 @@ egc_quantile_table <- function(test.method=egcm.urtests(),
 	# under the assumption rho=1.
 	test.method <- match.arg(test.method)
 #    require(parallel)
-	df <- do.call("cbind", mclapply(n, function(nv) c(nv, egc_quantiles(test.method, nv, nrep, q))))
+	df <- do.call("cbind", lapply(n, function(nv) c(nv, egc_quantiles(test.method, nv, nrep, q))))
 	df <- as.data.frame(df)
 	colnames(df) <- n
 	df <- cbind(data.frame(quantile=c(NA,q)), df) 
