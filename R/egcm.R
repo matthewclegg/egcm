@@ -230,17 +230,27 @@ test.egcm <- function(EGCM, test.method=egcm.default.urtest()) {
 	
 	if (test.method %in% c("jo-e", "jo-t")) {
 		if (test.method == "jo-e") {
-			jo <- ca.jo(provideDimnames(X), type="eigen", ecdet="const")
-			STAT <- -jo@teststat[2]
+			jo <- try(ca.jo(provideDimnames(X), type="eigen", ecdet="const"))
+			if (class(jo) == "try-error") {
+			  STAT <- NA
+			  PVAL <- NA
+			} else {
+			  STAT <- -jo@teststat[2]
+			  PVAL <- quantile_table_interpolate(egc_joe_qtab, length(R), STAT)
+			}
 			names(STAT) <- "lambda_max"
-			PVAL <- quantile_table_interpolate(egc_joe_qtab, length(R), STAT)
-			URTEST <- jo@test.name		
+			URTEST <- "Johansen-Procedure"		
 		} else if (test.method == "jo-t") {
-			jo <- ca.jo(provideDimnames(X), type="trace", ecdet="const")
-			STAT <- -jo@teststat[2]
+			jo <- try(ca.jo(provideDimnames(X), type="trace", ecdet="const"))
+			if (class(jo) == "try-error") {
+			  STAT <- NA
+			  PVAL <- NA
+			} else {
+			  STAT <- -jo@teststat[2]
+			  PVAL <- quantile_table_interpolate(egc_jot_qtab, length(R), STAT)
+			}
 			names(STAT) <- "trace"
-			PVAL <- quantile_table_interpolate(egc_jot_qtab, length(R), STAT)
-			URTEST <- jo@test.name		
+			URTEST <- "Johansen-Procedure"		
 		}
 	    htest <- structure(list(statistic = STAT, alternative = "cointegrated", 
 	        p.value = PVAL, method = "", urtest = URTEST, data.name = DNAME), 
@@ -706,10 +716,14 @@ print.egcm <- function (x, ...) {
         E$residuals[N]/sd(E$residuals)))
     
     warnings <- c()
-    if (E$s1.i1.p < E$pvalue) {
+    if (is.na(E$s1.i1.p)) {
+        warnings <- c(warnings, sprintf("I(1) test for %s returned NA.", E$series_names[1]))
+    } else if (E$s1.i1.p < E$pvalue) {
         warnings <- c(warnings, sprintf("%s does not seem to be integrated.", E$series_names[1]))
     } 
-    if (E$s2.i1.p < E$pvalue) {
+    if (is.na(E$s2.i1.p)) {
+        warnings <- c(warnings, sprintf("I(1) test for %s returned NA.", E$series_names[2]))
+    } else if (E$s2.i1.p < E$pvalue) {
         warnings <- c(warnings, sprintf("%s does not seem to be integrated.", E$series_names[2]))
     } 
     if (!is.cointegrated(E)) {
@@ -961,6 +975,8 @@ is.cointegrated <- function (E) {
 		stop("Parameter E must be of type egcm")
 	}
 
+  if (is.na(E$s1.i1.p) || is.na(E$s2.i1.p) || is.na(E$r.p)) return (FALSE)
+  
 	S1.I1 <- E$s1.i1.p > E$pvalue
 	S2.I1 <- E$s2.i1.p > E$pvalue
 	R.I0 <- E$r.p < E$pvalue
