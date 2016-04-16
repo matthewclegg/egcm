@@ -5,4 +5,6 @@
 11/12/2015 Updated to be compatible with newest release of ggplot
 3/26/2016 Change the Dickey-Fuller, Phillips-Perron and PGFF unit root tests so that
           they do not include a linear trend.
-          
+4/16/2016 Inserted exception handling for ca.jo(), which will fail when the two
+          series are co-linear or nearly co-linear.
+

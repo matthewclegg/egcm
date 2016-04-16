@@ -231,7 +231,7 @@ test.egcm <- function(EGCM, test.method=egcm.default.urtest()) {
 	if (test.method %in% c("jo-e", "jo-t")) {
 		if (test.method == "jo-e") {
 			jo <- try(ca.jo(provideDimnames(X), type="eigen", ecdet="const"))
-			if (class(jo) == "try-error") {
+			if (class(jo) == "try-error" || is.na(jo@teststat[2])) {
 			  STAT <- NA
 			  PVAL <- NA
 			} else {
@@ -242,7 +242,7 @@ test.egcm <- function(EGCM, test.method=egcm.default.urtest()) {
 			URTEST <- "Johansen-Procedure"		
 		} else if (test.method == "jo-t") {
 			jo <- try(ca.jo(provideDimnames(X), type="trace", ecdet="const"))
-			if (class(jo) == "try-error") {
+			if (class(jo) == "try-error" || is.na(jo@teststat[2])) {
 			  STAT <- NA
 			  PVAL <- NA
 			} else {
