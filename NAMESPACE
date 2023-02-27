@@ -1,7 +1,8 @@
 # exportPattern("^[[:alpha:]]+")
-import("ggplot2", "tseries", "zoo", "MASS", "TTR", "fArma", "parallel", "urca", "xts")
+import("ggplot2", "tseries", "zoo", "MASS", "parallel", "urca", "xts", "quantmod")
 importFrom("grid", grid.newpage, pushViewport, viewport, grid.layout)
 importFrom("methods", "is")
+importFrom("pracma", "hurstexp")
 importFrom("stats", "Box.test", "approx", "coef", "cov", "lm", "pbinom", "pt",
            "quantile", "rnorm", "runif", "sd", "var")
 

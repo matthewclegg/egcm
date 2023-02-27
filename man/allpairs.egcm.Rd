@@ -9,8 +9,8 @@ tests.
 }
 \usage{
 allpairs.egcm(tickers, 
-  startdate = as.numeric(format(Sys.Date() - 365, "\%Y\%m\%d")), 
-  enddate = as.numeric(format(Sys.Date(), "\%Y\%m\%d")), ...)
+  startdate = format(Sys.Date() - 365, "\%Y-\%m-\%d"), 
+  enddate =   format(Sys.Date(), "\%Y-\%m-\%d"), clear.na.inf=TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,9 +18,10 @@ allpairs.egcm(tickers,
     from Yahoo!.  Alternatively, this may be a \code{data.frame} containing
     the price series to be checked, one series per column.}
   \item{startdate}{The starting date for which to download the data.  
-    Given in the form \code{YYYYMMDD}.  Defaults to one year ago.}
+    Given in the form \code{"YYYY-MM-DD"}.  Defaults to one year ago.}
   \item{enddate}{The ending date for which to download the data.
-    Given in the form \code{YYYYMMDD}.  Defaults to today.}
+    Given in the form \code{"YYYY-MM-DD"}.  Defaults to today.}
+    \item{clear.na.inf}{if TRUE, NA and Inf price values are replaced by the last available price.  Default:TRUE.}
   \item{\dots}{Other parameters to be passed to \code{\link{egcm}}}
 }
 \value{

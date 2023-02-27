@@ -28,7 +28,7 @@ test <- function(expr, out="") {
     cat("Result:\n")
     print(val)
     if (!missing(out) && 
-       (as.character(val) != as.character(out))) {
+       all(as.character(val) != as.character(out))) {
         return(FALSE)
     }
     return(TRUE)

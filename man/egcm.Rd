@@ -95,7 +95,7 @@ is.ar1(E)
     \item \code{"sp-r"} Schmidt and Phillips rho statistic
       (see \code{\link[urca]{ur.sp}})
     \item \code{"hurst"} Hurst exponent calculated using the
-      aggregated variance method (see \code{\link[fArma]{aggvarFit}})
+      corrected empirical method (see \code{\link[pracma]{hurstexp}})
   } %\itemize
 } %\item{urtest}
   \item{p.value}{the p-value to be used in the above tests.
@@ -310,13 +310,15 @@ The fields of the \code{"egcm"} object are as follows:
 \link[urca]{ca.jo} 
 }
 \examples{
-\donttest{
-library(TTR)
+\dontrun{
+library(quantmod)
 
 # SPY and IVV are both ETF's that track the S&P 500.
 # One would expect them to be cointegrated, and in 2013 they were.
-spy2013 <- getYahooData("SPY", 20130101, 20131231)$Close
-ivv2013 <- getYahooData("IVV", 20130101, 20131231)$Close
+spy2013 <- getSymbols("SPY", from = "2013-01-01",
+          to = "2013-12-31",auto.assign = FALSE)$SPY.Adjusted
+ivv2013 <- getSymbols("IVV", from = "2013-01-01", 
+         to = "2013-12-31",auto.assign = FALSE)$IVV.Adjusted
 egcm(spy2013, ivv2013)
 
 # egcm has a plot method, which can be useful
@@ -325,18 +327,18 @@ egcm(spy2013, ivv2013)
 # other that they are indistinguishable.
 plot(egcm(spy2013, ivv2013))
 
-# The yegcm method provides a convenient interface to the TTR
+# The yegcm method provides a convenient interface to the quantmod
 # package, which can fetch closing prices from Yahoo.  Thus, 
 # the above can be simplified as follows:
 
-e <- yegcm("SPY", "VOO", 20130101, 20140101)
+e <- yegcm("SPY", "VOO", start="2013-01-01", end="2014-01-01")
 print(e)
 plot(e)
 summary(e)
 
 # GLD and IAU both track the price of gold.  
 # They too tend to be very tightly cointegrated.
-gld.iau.2013 <- yegcm("GLD", "IAU", 20130101, 20131231)
+gld.iau.2013 <- yegcm("GLD", "IAU", start="2013-01-01", end="2013-12-31")
 gld.iau.2013
 plot(gld.iau.2013)
 
@@ -344,14 +346,14 @@ plot(gld.iau.2013)
 # example of a pair of securities for which pairs trading
 # may be fruitful.  However, at least in 2013, they were not
 # cointegrated.
-ko.pep.2013 <- yegcm("KO", "PEP", 20130101, 20131231)
+ko.pep.2013 <- yegcm("KO", "PEP", start="2013-01-01", end="2013-12-31")
 ko.pep.2013
 plot(ko.pep.2013)
 
 # Ford and GM seemed to be even more tightly linked.
 # Yet, the degree of linkage was not high enough to pass the
 # cointegration test.
-f.gm.2013 <- yegcm("F","GM", 20130101, 20131231)
+f.gm.2013 <- yegcm("F","GM", start="2013-01-01", end="2013-12-31")
 f.gm.2013
 plot(f.gm.2013)
 }}

@@ -105,18 +105,15 @@ tests included in the base R distribution
 \code{\link[urca:ca.jo]{urca}} An extensive collection of unit root tests and
 cointegration tests implemented by Bernard Pfaff
 
-% If I could figure out how to encode the following link so that
-% it does not cause 'R CMD check' to barf, I would do so, however
-% I do not wish to introduce a dependency on fArma just to satisfy
-% 'R CMD check'.
-\code{\link[fArma]{aggvarFit}} Unit root tests based on variance ratios
-% \code{fArma} Unit root tests based on variance ratios
+\code{\link[pracma]{hurstexp}} Unit root tests based on variance ratios
 }
 \examples{
-\donttest{
-library(TTR)
-prices.spy <- getYahooData("SPY", 20130101, 20140101)$Close
-prices.voo <- getYahooData("VOO", 20130101, 20140101)$Close
+\dontrun{
+library(quantmod)
+prices.spy <- getSymbols("SPY", from="2013-01-01", to="2014-01-01",
+                          auto.assign = FALSE)$SPY.Adjusted
+prices.voo <- getSymbols("VOO", from="2013-01-01", to="2014-01-01",
+                          auto.assign = FALSE)$VOO.Adjusted
 egcm(prices.spy, prices.voo)
 plot(egcm(prices.spy, prices.voo))
 summary(egcm(prices.spy, prices.voo))
@@ -125,7 +122,7 @@ summary(egcm(prices.spy, prices.voo))
 # package, which can fetch closing prices from Yahoo.  Thus, 
 # the above can be simplified as follows:
 
-e <- yegcm("SPY", "VOO", 20130101, 20140101)
+e <- yegcm("SPY", "VOO", start="2013-01-01", end="2014-01-01")
 print(e)
 plot(e)
 summary(e)

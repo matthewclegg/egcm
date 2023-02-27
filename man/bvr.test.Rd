@@ -59,7 +59,7 @@ ratio.
 }
 \author{Matthew Clegg \email{matthewcleggphd@gmail.com}}
 \seealso{
-  \code{\link[fArma]{aggvarFit}}
+  \code{\link[pracma]{hurstexp}}
   \code{\link{egcm}}
 }
 \examples{

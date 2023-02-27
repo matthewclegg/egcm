@@ -58,7 +58,7 @@ egcm.default.pvalue()
     \item \code{"sp-r"} Schmidt and Phillips rho statistic
       (see \code{\link[urca]{ur.sp}})
     \item \code{"hurst"} Hurst exponent calculated using the
-      aggregated variance method (see \code{\link[fArma]{aggvarFit}})
+      corrected empirical method (see \code{\link[pracma]{hurstexp}})
   } %\itemize
 } %\item{urtest}
 \item{p}{

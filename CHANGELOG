@@ -3,8 +3,13 @@
 1/28/2015 Updated DESCRIPTION to include authors@R
 1/28/2015 Default unit root test set to "pp"
 11/12/2015 Updated to be compatible with newest release of ggplot
-3/26/2016 Change the Dickey-Fuller, Phillips-Perron and PGFF unit root tests so that
-          they do not include a linear trend.
+3/26/2016 Change the Dickey-Fuller, Phillips-Perron and PGFF unit root tests so 
+          that they do not include a linear trend.
 4/16/2016 Inserted exception handling for ca.jo(), which will fail when the two
           series are co-linear or nearly co-linear.
+9/17/2017 Updated yegcm so that it fetches Yahoo data via quantmod rather
+          than through TTR (thanks, Jonas Rende)
+9/17/2017 Updated hurst exponent unit-root test so that it uses pracma::hurstexp
+          rather than the now defunc fArma::aggvarfit
+
 
